@@ -54,8 +54,8 @@ http.createServer((req,res)=>{
             })
         }
         else if(req.url=='/write'){
-            const message = 'hoolllaaaa';
-            fs.writeFile('example.txt',message,'utf-8',()=>{
+            const message = 'hola';
+            fs.writeFile('example.txt',message,'utf-8',(err)=>{
                 if(err){
                     res.end('there was some error');
                 }

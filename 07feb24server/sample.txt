@@ -1,0 +1,2 @@
+made this txt file so that we can use the fs module
+and read the file content.

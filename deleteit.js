@@ -1,5 +1,6 @@
 fruits = ['orange', 'mango' ,'apple'];
 let removed = fruits.splice(1,2,'pear','melon');
+console.log(fruits);
 
 let moreFruits = ["grapefruit",'pineapple'];
 let allFruits = fruits.concat(moreFruits);

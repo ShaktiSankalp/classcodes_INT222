@@ -14,9 +14,16 @@ app.get('/aboutme',(req,res)=>{
 });
 
 
-app.get('/aboutme',(req,res)=>{
-    res.send('This is about  page');
-});
+//if we reapeat the same route again this wont give error but also wont work the first one will be given prioritty
+// app.get('/aboutme',(req,res)=>{
+//     res.send('This is about  page');
+// });
+
+
+
+
+
+
 
 
 

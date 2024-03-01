@@ -5,7 +5,7 @@ const app = express();   //creating an instance
 
 //route handler for home route
 app.get("/",(req,res)=>{       //get method is used to get/request a service from server
-    res.send("Hello World!");
+    res.send("Hello World!");   //res.end will also work
 });
 
 //route handler for aboutme page

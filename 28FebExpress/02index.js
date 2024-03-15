@@ -13,6 +13,8 @@ app.get("/readFile",(req,res)=>{
         if(err){
             res.send(err);
         }else{
+            //if instead of displaying the file its downloading then use this
+            //res.setHeader("content-Type": "text/plain");
             res.send(data);
         }
     })
@@ -21,3 +23,24 @@ app.get("/readFile",(req,res)=>{
 
 
 app.listen(3000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

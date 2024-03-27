@@ -39,6 +39,19 @@ app.post('/todos',(req,res)=>{
     });
 })
 
+app.put('/todos/:id',(req,res)=>{
+    const {id} = req.params;
+    const {title , completed} = req.body;
+   pool.query('UPDATE todos SET title = $1,completed = $2 WHERE id = $3',[title,completed,id],(err)=>{
+        if(err){
+            console.error('Error updating todos',err);
+            res.status(500).json({error:"Internal server error"});
+        }else{
+            res.json({message:"Updated successfully"});
+        }
+    })
+});
+
 
 app.listen(port,()=>{
     console.log('server running on 3000');

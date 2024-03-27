@@ -6,19 +6,79 @@
     <title>web chat</title>
 </head>
 <body>
+    <style>
+        /* body{
+            display: flex;
+            justify-content: space-evenly;
+        } */
+        /* ul{
+            border: 2px solid red;
+            max-width: 45%;
+            min-width: 30%;
+            overflow-wrap: break-word;
+        }
+        form{
+            border: 2px solid yellow;
+            max-width: 45%;
+            min-width: 30%;
+        } */
+    </style>
 
     <ul id="list">
-        <form id="form">
-            <input type="text" id="input:text">
-            <button>Send</button>
-
-        </form>
+       
     </ul>
+    <form id="form">
+        <input type="text" id="input">
+        <button >Send</button>
+
+    </form>
 
 
     <script src="/socket.io/socket.io.js"></script>  <!-- //doing something that i didnt understood prolly downloading some library or somethang -->
+    
     <script>
         const socket = io();
+
+        const username = prompt("Enter your name");
+
+        socket.emit("setUsername",username);
+
+        const form = document.getElementById("form");
+        const input = document.getElementById("input");
+        const list = document.getElementById("list");
+        form.addEventListener("submit",e=>{
+            e.preventDefault();
+            if(input.value){
+                socket.emit("chat message",input.value);
+                input.value="";
+
+            }
+        })
+        socket.on("chat message",msg=>{
+            //var text = document.createTextNode(`${user}: ${msg}`)
+        //    document.getElementById("list").appendChild('li').textContent=text;
+
+            const item = document.createElement("li");
+            item.textContent=msg;
+            item.style.fontSize="1.5rem"
+            console.log(msg);
+            list.appendChild(item);
+        })
+
+        socket.on("userJoined",msg=>{
+            const item = document.createElement("li");
+            item.innerHTML=msg;
+            console.log(msg);
+            list.appendChild(item);
+        })
+
+
+        socket.on("userLeft",msg=>{
+            const item = document.createElement("li");
+            item.innerHTML=msg;
+            console.log(msg);
+            list.appendChild(item);
+        })
     </script>
     
 </body>

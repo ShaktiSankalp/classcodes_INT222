@@ -1,3 +1,4 @@
+//no frontend we rolling on postman now
 const express = require("express");
 const {Pool} = require("pg");
 
@@ -51,6 +52,19 @@ app.put('/todos/:id',(req,res)=>{
         }
     })
 });
+
+
+app.delete('/todos/:id',(req,res)=>{
+    const {id} = req.params;
+    pool.query('DELETE FROM todos WHERE id = $1',[id],(err)=>{
+        if(err){
+            console.error('Error deleting todo',err);
+            res.status(500).json({error:"Internal server error"});
+        }else{
+            res.json({message:'Deleted successfully'});
+        }
+    })
+})
 
 
 app.listen(port,()=>{
